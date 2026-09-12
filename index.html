@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yuzu Creation - Art Portfolio & Streaming Hub</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        Yuzu Creation
+      </a>
+      <ul class="nav-links">
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="socials.html">Socials</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <span id="navAuth"></span>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="about">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-info">
+          <span class="badge">Artist &amp; Creator</span>
+          <h1><span id="aboutGreeting">Art. Live Streams.</span> <span class="grad" id="aboutName">Yuzu.</span></h1>
+          <p id="aboutBio">
+            A gallery of my creations plus my music and videos, all in one place.
+            Follow along on TikTok, Twitch and Facebook.
+          </p>
+          <div class="hero-actions">
+            <a href="gallery.html" class="btn btn-primary">Browse the gallery</a>
+            <a href="socials.html" class="btn btn-outline">Follow me</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <div class="avatar-ring">
+            <img id="aboutAvatarImg" alt="Profile photo" />
+          </div>
+          <div class="hero-stats" id="heroStats"></div>
+        </div>
+      </div>
+
+      <div class="explore-grid">
+        <a class="explore-card" href="gallery.html">
+          <span class="xp-ico">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/></svg>
+          </span>
+          <h3>Gallery</h3>
+          <p>Browse my artworks, drop a like and leave a comment.</p>
+        </a>
+        <a class="explore-card" href="music.html">
+          <span class="xp-ico">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 18V5l12-2v13a3 3 0 1 1-2-2.83V6.53l-8 1.33V18a3 3 0 1 1-2-2.83z"/></svg>
+          </span>
+          <h3>Music</h3>
+          <p>Listen to my tracks with the live playlist player.</p>
+        </a>
+        <a class="explore-card" href="videos.html">
+          <span class="xp-ico">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <h3>Videos</h3>
+          <p>Watch my latest clips and stream highlights.</p>
+        </a>
+        <a class="explore-card" href="socials.html">
+          <span class="xp-ico">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3C12.13 3 9 6.13 9 10v4H6v5l2.5-2.5C10.4 18.4 13 20 16 20c3.87 0 7-3.13 7-7s-3.13-7-7-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+          </span>
+          <h3>Socials</h3>
+          <p>Follow me everywhere - TikTok, Facebook, Twitch and more.</p>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <footer class="footer">
+    <div class="container">
+      &copy; <span id="year"></span> <span id="footerName">Yuzu Creation</span>. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

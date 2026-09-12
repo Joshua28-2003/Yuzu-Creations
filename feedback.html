@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback &amp; Reports - Yuzu Creation</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        Yuzu Creation
+      </a>
+      <ul class="nav-links">
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="socials.html">Socials</a></li>
+        <li><a href="feedback.html" class="active">Feedback</a></li>
+        <span id="navAuth"></span>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-top container-wide">
+    <div class="container-narrow" style="max-width:700px;margin:0 auto;">
+      <div class="auth-card">
+        <h1>Contact the Admin</h1>
+        <p class="sub">Report a problem, suggest a feature, or appeal a ban. The admin reviews every message.</p>
+        <div id="formAlert" class="alert alert-error hidden"></div>
+        <div id="successBox" class="alert alert-success hidden"></div>
+        <form id="feedbackForm" novalidate>
+          <div class="field">
+            <label for="kind">Type</label>
+            <select id="kind">
+              <option value="feedback">General feedback</option>
+              <option value="report">Report a problem</option>
+              <option value="appeal">Appeal a ban</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" maxlength="60" required />
+            </div>
+            <div class="field">
+              <label for="email">Your email</label>
+              <input type="email" id="email" maxlength="120" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="subject">Subject (optional)</label>
+            <input type="text" id="subject" maxlength="120" />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" rows="6" maxlength="1500" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Send message</button>
+        </form>
+        <p class="text-center" style="margin-top:18px;font-size:.85rem;color:var(--muted);">
+          If your account is banned, an appeal tells the admin why you think the ban should be removed.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container-wide footer-inner">
+      <p>&copy; 2026 Yuzu Creation. Built with love.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

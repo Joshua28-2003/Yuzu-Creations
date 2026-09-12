@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music - Yuzu Creation</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        Yuzu Creation
+      </a>
+      <ul class="nav-links">
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="music.html" class="active">Music</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="socials.html">Socials</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <span id="navAuth"></span>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="page-top" id="music">
+    <div class="container">
+      <div class="section-head">
+        <h2>My <span>music</span></h2>
+      </div>
+      <p>Original tracks and beats. Press play and enjoy the vibe.</p>
+      <div id="musicHost">
+        <div class="empty">Loading playlist...</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      &copy; <span id="year"></span> <span id="footerName">Yuzu Creation</span>. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Yuzu Creation</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        Yuzu Creation
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <span id="navAuth"></span>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="dash-head">
+      <div>
+        <h1 id="welcomeMsg">Dashboard</h1>
+        <div class="dash-user">
+          <img class="dash-avatar hidden" id="dashAvatar" alt="Profile photo" />
+          <span class="avatar-fallback hidden" id="dashAvatarFallback">YU</span>
+          <p class="muted" id="dashboardSub">Manage your content and profile.</p>
+        </div>
+      </div>
+      <a href="index.html" class="btn btn-outline">View public page</a>
+    </div>
+
+    <div id="viewerNotice" class="alert alert-error hidden" style="margin:24px 0;">
+      You have <strong>viewer</strong> access. Only the site admin can upload artwork, music or videos.
+    </div>
+
+    <div class="dash-tabs" id="adminTabs">
+      <button type="button" class="dash-tab active" data-page="overview">
+        <svg class="dash-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/></svg> Overview
+      </button>
+      <button type="button" class="dash-tab" data-page="artworks">
+        <svg class="dash-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Upload Artwork
+      </button>
+      <button type="button" class="dash-tab" data-page="music">
+        <svg class="dash-tab-ico" viewBox="0 0 24 24" fill="currentColor"><path d="M9 18V5l12-2v13a3 3 0 1 1-2-2.83V6.53l-8 1.33V18a3 3 0 1 1-2-2.83z"/></svg> Upload Music
+      </button>
+      <button type="button" class="dash-tab" data-page="videos">
+        <svg class="dash-tab-ico" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Upload Video
+      </button>
+      <button type="button" class="dash-tab" data-page="links">
+        <svg class="dash-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Links
+      </button>
+      <button type="button" class="dash-tab" data-page="feedback">
+        <svg class="dash-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Reports &amp; Feedback <span class="dash-tab-badge" id="feedbackTabBadge"></span>
+      </button>
+      <button type="button" class="dash-tab" data-page="profile">
+        <svg class="dash-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Profile
+      </button>
+    </div>
+
+    <!-- ============ OVERVIEW ============ -->
+    <section class="dash-page" data-page="overview">
+      <div class="dash-stats" id="overviewStats"></div>
+      <div class="dash-cols">
+        <section class="panel">
+          <h2>Registered accounts</h2>
+          <div id="usersList"><div class="empty">Loading...</div></div>
+        </section>
+        <section class="panel">
+          <h2>Recent comments <span class="panel-count" id="modCommentCount"></span></h2>
+          <div id="modCommentsList"><div class="empty">Loading...</div></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============ ARTWORKS ============ -->
+    <section class="dash-page hidden" data-page="artworks">
+      <div class="dash-grid">
+        <div>
+          <section class="panel" id="projectPanel">
+            <h2 id="projectFormTitle">Add artwork</h2>
+            <form id="projectForm">
+              <div class="field">
+                <label for="pTitle">Title</label>
+                <input type="text" id="pTitle" required />
+              </div>
+              <div class="field">
+                <label for="pCategory">Category</label>
+                <input type="text" id="pCategory" placeholder="e.g. Digital, Sketches, 3D" />
+              </div>
+              <div class="field">
+                <label for="pDescription">Description</label>
+                <textarea id="pDescription"></textarea>
+              </div>
+              <div class="field">
+                <label for="pImage">Artwork image</label>
+                <input type="file" id="pImage" accept="image/*" />
+                <p class="hint">Max 5MB. JPEG, PNG, GIF, WebP or AVIF.</p>
+                <div class="image-preview" id="pImagePreview">
+                  <img id="pImagePreviewImg" src="" alt="Preview" />
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="projectSubmitBtn">Add artwork</button>
+                <button type="button" class="btn btn-ghost hidden" id="projectCancelEdit">Cancel</button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <section class="panel" id="myProjectsPanel">
+          <h2>My artworks</h2>
+          <div id="projectsList"></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============ MUSIC ============ -->
+    <section class="dash-page hidden" data-page="music">
+      <div class="dash-grid single">
+        <section class="panel" id="musicPanel">
+          <h2 id="songFormTitle">Add song</h2>
+          <form id="songForm">
+            <div class="field">
+              <label for="sTitle">Title</label>
+              <input type="text" id="sTitle" required />
+            </div>
+            <div class="field">
+              <label for="sArtist">Artist</label>
+              <input type="text" id="sArtist" placeholder="Your stage name / band" />
+            </div>
+            <div class="field">
+              <label for="sAudio">Audio file</label>
+              <input type="file" id="sAudio" accept="audio/*" />
+              <p class="hint">Max 20MB. MP3, WAV, OGG, M4A, AAC or WebM audio.</p>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="songSubmitBtn">Add song</button>
+              <button type="button" class="btn btn-ghost hidden" id="songCancelBtn">Cancel</button>
+            </div>
+          </form>
+          <h3 style="margin-top:22px;">Playlist</h3>
+          <div id="songsList"></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============ VIDEOS ============ -->
+    <section class="dash-page hidden" data-page="videos">
+      <div class="dash-grid">
+        <div>
+          <section class="panel" id="videoPanel">
+            <h2 id="videoFormTitle">Add video</h2>
+            <form id="videoForm">
+              <div class="field">
+                <label for="vTitle">Title</label>
+                <input type="text" id="vTitle" required />
+              </div>
+              <div class="field">
+                <label for="vCategory">Category</label>
+                <input type="text" id="vCategory" placeholder="e.g. Tutorial, Cover, Vlog" />
+              </div>
+              <div class="field">
+                <label for="vDescription">Description</label>
+                <textarea id="vDescription"></textarea>
+              </div>
+              <div class="field">
+                <label for="vFile">Video file</label>
+                <input type="file" id="vFile" accept="video/*" />
+                <p class="hint">Max 200MB. MP4, WebM or OGG video.</p>
+                <div class="image-preview" id="vPreview">
+                  <video id="vPreviewVideo" controls preload="metadata"></video>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="videoSubmitBtn">Add video</button>
+                <button type="button" class="btn btn-ghost hidden" id="videoCancelBtn">Cancel</button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <section class="panel" id="myVideosPanel">
+          <h2>My videos</h2>
+          <div id="videosList"></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============ LINKS ============ -->
+    <section class="dash-page hidden" data-page="links">
+      <section class="panel" id="linksPanel">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+          <h2 style="margin-bottom:0;">Social links</h2>
+          <button type="button" class="btn btn-outline btn-sm" id="addLinkBtn">Add link</button>
+        </div>
+        <div id="linksList"></div>
+        <p class="links-hint">
+          All links appear in the "Follow me" section of your public page, including Twitch and TikTok.
+        </p>
+      </section>
+    </section>
+
+    <!-- ============ FEEDBACK ============ -->
+    <section class="dash-page hidden" data-page="feedback">
+      <section class="panel">
+        <h2>Reports &amp; feedback <span class="panel-count" id="feedbackCount"></span></h2>
+        <p class="muted" style="font-size:.85rem;margin-bottom:18px;">
+          Appeals from banned accounts, problem reports and suggestions from visitors. "Unban &amp; recover" approves an appeal and restores the account.
+        </p>
+        <div class="feedback-toolbar">
+          <select id="feedbackFilter" aria-label="Filter feedback">
+            <option value="">All messages</option>
+            <option value="pending">Pending</option>
+            <option value="resolved">Resolved</option>
+          </select>
+        </div>
+        <div id="feedbackList"><div class="empty">Loading...</div></div>
+      </section>
+    </section>
+
+    <!-- ============ PROFILE ============ -->
+    <section class="dash-page hidden" data-page="profile">
+      <section class="panel" id="profilePanel">
+        <h2>My profile</h2>
+        <p class="muted" style="font-size:.85rem;margin-bottom:18px;">
+          This is what visitors see on the public page.
+        </p>
+        <form id="profileForm">
+          <div class="field">
+            <label for="pfName">Display name</label>
+            <input type="text" id="pfName" />
+          </div>
+          <div class="field">
+            <label for="pfBio">Bio</label>
+            <textarea id="pfBio"></textarea>
+            <p class="hint">A short intro shown on your public page.</p>
+          </div>
+          <div class="field">
+            <label for="pfAvatar">Profile photo</label>
+            <input type="file" id="pfAvatar" accept="image/*" />
+            <p class="hint">Click below to preview and crop your photo. It will be squared automatically.</p>
+            <div class="avatar-preview-box" id="pfAvatarPreview">
+              <img id="pfAvatarPreviewImg" src="" alt="Preview" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="pfCurrent">Current password</label>
+            <input type="password" id="pfCurrent" autocomplete="current-password" />
+            <p class="hint">Required only when you want to change the password.</p>
+          </div>
+          <div class="field">
+            <label for="pfNew">New password</label>
+            <input type="password" id="pfNew" minlength="6" autocomplete="new-password" />
+            <p class="hint">Leave both password fields blank to keep your current password.</p>
+          </div>
+          <button type="submit" class="btn btn-primary">Save profile</button>
+        </form>
+      </section>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      &copy; <span id="year"></span> Yuzu Creation.
+    </div>
+  </footer>
+
+  <!-- ============ CROP MODAL ============ -->
+  <div class="modal" id="cropModal" hidden>
+    <div class="modal-backdrop" id="cropBackdrop"></div>
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3>Crop your profile photo</h3>
+        <button type="button" class="modal-close" id="cropClose" aria-label="Close">&times;</button>
+      </div>
+      <div class="crop-stage" id="cropStage">
+        <div class="crop-stage-mask"></div>
+        <img id="cropImg" alt="Crop" />
+      </div>
+      <p class="crop-hint">Drag to position the photo. Scroll / pinch to zoom. The photo is cropped to a square.</p>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" id="cropCancel">Cancel</button>
+        <button type="button" class="btn btn-primary" id="cropApply">Crop &amp; upload</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ BAN MODAL ============ -->
+  <div class="modal" id="banModal" hidden>
+    <div class="modal-backdrop" id="banBackdrop"></div>
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3>Ban account</h3>
+        <button type="button" class="modal-close" id="banClose" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="muted" style="font-size:.85rem;margin-bottom:14px;">
+          Banned <strong id="banUserName"></strong> &lt;<span id="banUserEmail"></span>&gt;. They will be locked out of logging in until the ban ends.
+        </p>
+        <div class="field">
+          <label for="banPeriod">Duration</label>
+          <select id="banPeriod">
+            <option value="days">1 - 30 days</option>
+            <option value="months">1 - 12 months</option>
+            <option value="years">1 - 10 years</option>
+            <option value="forever">Forever (permanent)</option>
+          </select>
+        </div>
+        <div class="field" id="banAmountWrap">
+          <label for="banAmount">Amount</label>
+          <input type="number" id="banAmount" min="1" max="30" value="7" />
+          <p class="hint" id="banAmountHint"></p>
+        </div>
+        <div class="field">
+          <label for="banReason">Reason (shown to the user)</label>
+          <textarea id="banReason" maxlength="200" placeholder="e.g. Repeated spam or harassment"></textarea>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" id="banCancel">Cancel</button>
+        <button type="button" class="btn btn-danger" id="banConfirm">Ban account</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
